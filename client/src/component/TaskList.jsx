@@ -1,4 +1,5 @@
 import { deleteTask, updateTask } from "../services/taskService";
+import './TaskList.css';
 
 function TaskList({ tasks, setTasks }) {
   return (
@@ -6,6 +7,7 @@ function TaskList({ tasks, setTasks }) {
       {tasks.map((task) => (
         <li key={task._id}>
           {task.title}
+          <div>
           <button
             onClick={async () => {
               await deleteTask(task._id);
@@ -32,6 +34,7 @@ function TaskList({ tasks, setTasks }) {
           >
             Update
           </button>
+          </div>
         </li>
       ))}
     </ul>

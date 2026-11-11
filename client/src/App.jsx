@@ -1,27 +1,29 @@
-import {useState, useEffect} from 'react';
+import { useState } from 'react';
 
 import Header from './component/Header';
 import TaskAdd from './component/TaskAdd';
 import TaskList from './component/TaskList';
 
-import { getTasks } from './services/taskService';
+import useTasks from './hooks/useTasks';
+
+import './App.css';
 
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  
   const [newTask, setNewTask] = useState('');
-
-  useEffect(() => {
-    getTasks().then((response) => {
-      setTasks(response.data);
-    });
-  }, []);
+  const { tasks, setTasks, loading, error } = useTasks();
+  
   return(
-    <>
-      <Header title="Welcome to the Task Manager"></Header>
+    <div className="background">
+      <Header title="Welcome to the Task Manager" className="header"></Header>
       <TaskAdd newTask={newTask} setNewTask={setNewTask} setTasks={setTasks} />
-      <TaskList tasks={tasks} setTasks={setTasks} />
-    </>
+      {loading && <p>Loading tasks...</p>}
+      {error && <p className="error">Error: {error}</p>}
+      {!loading && !error && <TaskList tasks={tasks} setTasks={setTasks} />}
+      
+      
+    </div>
   )
 }
 export default App;

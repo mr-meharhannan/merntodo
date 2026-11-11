@@ -1,0 +1,33 @@
+.task-add {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 10px 2px;
+  width: 99%;
+}
+
+.task-add input {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+.task-add button {
+  padding: 10px 15px;
+  font-size: 0.625rem;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.task-add button:hover {
+  background-color: #ff1a1a;
+}
+
+.task-clear-button {
+  background-color: #ff4d4d;
+}
