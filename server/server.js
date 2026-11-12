@@ -5,15 +5,15 @@ const mongoose = require('mongoose')
 const taskRoutes = require('./routes/taskRoutes')
 const authRoutes = require('./routes/authRoutes')
 
-
 app.use(cors())
 app.use(express.json())
 
-app.use('/auth', authRoutes)
-app.use('/tasks', taskRoutes)
-
 const env = require('dotenv')
 env.config()
+
+
+app.use('/auth', authRoutes)
+app.use('/tasks', taskRoutes)
 
 mongoose.connect(process.env.MONGO_URI,)
 .then(() =>
