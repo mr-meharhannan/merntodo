@@ -9,8 +9,8 @@ const {
 } = require('../controllers/taskController')
 
 router.get('/', authMiddleware, getTasks)
-router.post('/', createTask)
-router.delete('/:id', deleteTask)
-router.put('/:id', updateTask)
+router.post('/', authMiddleware, createTask)
+router.delete('/:id', authMiddleware, deleteTask)
+router.put('/:id', authMiddleware, updateTask)
 
 module.exports = router;
