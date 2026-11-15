@@ -9,7 +9,7 @@ app.use(cors())
 app.use(express.json())
 
 const env = require('dotenv')
-env.config()
+env.config({override: true})
 
 
 app.use('/auth', authRoutes)
@@ -17,7 +17,7 @@ app.use('/tasks', taskRoutes)
 
 mongoose.connect(process.env.MONGO_URI,)
 .then(() =>
-    {
+    {    
     console.log('MongoDB connected')
     app.listen(process.env.PORT, () => {
         console.log(`Server running on port ${process.env.PORT}`)
