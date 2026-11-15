@@ -17,4 +17,8 @@ const deleteTask = async (id) => await axios.delete(`${API_URL}/${id}`, getAuthH
 const updateTask = async (id, title) =>
   await axios.put(`${API_URL}/${id}`, { title: title }, getAuthHeader());
 
+<<<<<<< HEAD
 export { getTasks, createTask, deleteTask, updateTask };
+=======
+export { getTasks, createTask, deleteTask, updateTask };
+>>>>>>> 5994042c614712c033407dce8b2ffad333962d5e

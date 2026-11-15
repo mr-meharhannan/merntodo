@@ -14,7 +14,10 @@ function Login() {
       localStorage.setItem("token", response.data.token);
       alert("Login Successful");
     } catch (err) {
+<<<<<<< HEAD
         console.log(err.response?.data)
+=======
+>>>>>>> 5994042c614712c033407dce8b2ffad333962d5e
       console.log(err);
       alert("Login Failed");
     }
@@ -36,4 +39,8 @@ function Login() {
   </>;
 }
 
+<<<<<<< HEAD
 export default Login;
+=======
+export default Login;
+>>>>>>> 5994042c614712c033407dce8b2ffad333962d5e
