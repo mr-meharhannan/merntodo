@@ -1,29 +1,28 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import Header from './Header';
-import TaskAdd from './TaskAdd';
-import TaskList from './TaskList';
+import Header from "./Header";
+import TaskAdd from "./TaskAdd";
+import TaskList from "./TaskList";
+import Logout from "./Logout";
 
-import useTasks from '../hooks/useTasks';
+import useTasks from "../hooks/useTasks";
 
-import './Todo.css';
+import "./Todo.css";
 
-
-function Todo() {
-  
-  const [newTask, setNewTask] = useState('');
+function Todo({setIsLoggedIn}) {
+  const [newTask, setNewTask] = useState("");
   const { tasks, setTasks, loading, error } = useTasks();
-  
-  return(
+
+  return (
     <div className="background">
       <Header title="Welcome to the Task Manager" className="header"></Header>
       <TaskAdd newTask={newTask} setNewTask={setNewTask} setTasks={setTasks} />
       {loading && <p>Loading tasks...</p>}
       {error && <p className="error">Error: {error}</p>}
       {!loading && !error && <TaskList tasks={tasks} setTasks={setTasks} />}
-      
-      
+
+      <Logout setIsLoggedIn={setIsLoggedIn} />
     </div>
-  )
+  );
 }
 export default Todo;
