@@ -1,16 +1,13 @@
 import axios from "axios";
 import "./Login.css";
 import Signup from "./signup";
+import { useState } from "react";
 
-function Login({
-  email,
-  setEmail,
-  password,
-  setPassword,
-  setIsLoggedIn,
-  haveanccount,
-  setHaveanccount,
-}) {
+function Login({ setToken }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [register, setRegister] = useState(false);
+
   const handleLogin = async () => {
     try {
       const response = await axios.post("http://localhost:5000/auth/login", {
@@ -18,30 +15,19 @@ function Login({
         password,
       });
       localStorage.setItem("token", response.data.token);
-      setIsLoggedIn(true);
+      setToken(response.data.token);
       alert("Login Successful");
-      setHaveanccount(true);
     } catch (err) {
       console.log(err.response?.data);
       console.log(err);
       alert("Login Failed");
     }
   };
-  const handleSignup = () => {
-    setHaveanccount(false);
-  };
 
   return (
     <div className="login-container">
-      {!haveanccount ? (
-        <Signup
-          email={email}
-          setEmail={setEmail}
-          password={password}
-          setPassword={setPassword}
-          setHaveanccount={setHaveanccount}
-          setIsLoggedIn={setIsLoggedIn}
-        />
+      {!register ? (
+        <Signup />
       ) : (
         <>
           <h2>Login</h2>

@@ -1,15 +1,7 @@
 import axios from "axios";
 import "./Signup.css";
 
-function Signup({
-  email,
-  setEmail,
-  password,
-  setPassword,
-  setIsLoggedIn,
-  haveanccount,
-  setHaveanccount,
-}) {
+function Signup() {
   const handleSignup = async () => {
     try {
       const response = await axios.post("http://localhost:5000/auth/register", {

@@ -21,7 +21,7 @@ function Todo({setIsLoggedIn}) {
       {error && <p className="error">Error: {error}</p>}
       {!loading && !error && <TaskList tasks={tasks} setTasks={setTasks} />}
 
-      <Logout setIsLoggedIn={setIsLoggedIn} />
+      <Logout />
     </div>
   );
 }
