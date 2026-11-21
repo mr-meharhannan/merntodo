@@ -1,12 +1,15 @@
 import axios from "axios";
 import "./Login.css";
-import Signup from "./signup";
+import { useNavigate } from "react-router";
 import { useState } from "react";
+import { useContext } from "react";
+import { auth } from "../context/context";
 
-function Login({ setToken }) {
+function Login() {
+  const {setToken} = useContext(auth);
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [register, setRegister] = useState(false);
 
   const handleLogin = async () => {
     try {
@@ -15,7 +18,10 @@ function Login({ setToken }) {
         password,
       });
       localStorage.setItem("token", response.data.token);
-      setToken(response.data.token);
+      if (setToken) {
+        setToken(response.data.token);
+      }
+      navigate("/");
       alert("Login Successful");
     } catch (err) {
       console.log(err.response?.data);
@@ -26,30 +32,26 @@ function Login({ setToken }) {
 
   return (
     <div className="login-container">
-      {!register ? (
-        <Signup />
-      ) : (
-        <>
-          <h2>Login</h2>
-          <input
-            type="email"
-            placeholder="Enter you Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Enter you Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button onClick={handleLogin}>Login</button>
-          <p>
-            Don't have an account?{" "}
-            <button onClick={handleSignup}>Sign up</button>
-          </p>
-        </>
-      )}
+      <>
+        <h2>Login</h2>
+        <input
+          type="email"
+          placeholder="Enter you Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Enter you Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button onClick={handleLogin}>Login</button>
+        <p>
+          Don't have an account?{" "}
+          <button onClick={() => navigate("/signup")}>Sign up</button>
+        </p>
+      </>
     </div>
   );
 }

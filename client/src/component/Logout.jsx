@@ -1,7 +1,15 @@
-function Logout({ setIsLoggedIn }) {
+import {useContext} from "react";
+import {auth} from "../context/context";
+import { useNavigate } from "react-router";
+
+function Logout() {
+  const { setToken } = useContext(auth);
+  const navigate = useNavigate();
+
   const handleLogout = () => {
     localStorage.removeItem("token");
-    setIsLoggedIn(false);
+    setToken(null);
+    navigate("/login");
   };
 
   return (

@@ -1,17 +1,33 @@
 import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import { useContext } from "react";
+import { auth } from "../context/context";
 import "./Signup.css";
 
 function Signup() {
+  const navigate = useNavigate();
+  const { setToken } = useContext(auth);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const handleSignup = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/auth/register", {
+      await axios.post("http://localhost:5000/auth/register", {
+        email,
+        password,
+        username,
+      });
+      alert("Signup Successful");
+      const res = await axios.post("http://localhost:5000/auth/login", {
         email,
         password,
       });
-      alert("Signup Successful");
-      localStorage.setItem("token", response.data.token);
-      setHaveanccount(true);
-      setIsLoggedIn(true);
+      localStorage.setItem("token", res.data.token);
+      if (setToken) {
+        setToken(res.data.token);
+      }
+      navigate("/");
     } catch (err) {
       console.log(err.response?.data);
       console.log(err);
@@ -21,6 +37,12 @@ function Signup() {
   return (
     <div className="signup-container">
       <h2>Signup</h2>
+      <input
+        type="name"
+        placeholder="Enter your Name"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
       <input
         type="email"
         placeholder="Enter you Email"
