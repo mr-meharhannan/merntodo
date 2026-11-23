@@ -1,9 +1,9 @@
-import {auth} from "./context/context";
+import {auth} from "./context/context.jsx";
 
-import Todo from "./component/Todo";
-import Login from "./component/Login";
-import Signup from "./component/signup";
-import Logout from "./component/Logout";
+import Todo from "./component/Todo/Todo.jsx";
+import Login from "./component/Authentication/Login/Login.jsx";
+import Signup from "./component/Authentication/Signup/Signup.jsx";
+import Logout from "./component/Authentication/Logout/Logout.jsx";
 
 import { useState } from "react";
 
