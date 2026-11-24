@@ -1,4 +1,4 @@
-import { deleteTask, updateTask } from "../services/taskService";
+import { deleteTask, updateTask } from "../../../services/taskService";
 import './TaskList.css';
 
 function TaskList({ tasks, setTasks }) {

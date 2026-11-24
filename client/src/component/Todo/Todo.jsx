@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import {useNavigate} from "react-router"; 
 import { useContext } from "react";
-import {auth} from "./context/context";
+import {auth} from "../../context/context.jsx";
 
-import Header from "./Header/Header.jsx";
-import TaskAdd from "./TaskAdd/TaskAdd.jsx";
-import TaskList from "./TaskList/TaskList.jsx";
-import Logout from "./Authentication/Logout/Logout.jsx";
+import Header from "../Header/Header.jsx";
+import TaskAdd from "../Task/TaskAdd/TaskAdd.jsx";
+import TaskList from "../Task/TaskList/TaskList.jsx";
+import Logout from "../Authentication/Logout/Logout.jsx";
 
-import useTasks from "../hooks/useTasks";
+import useTasks from "../../hooks/useTasks";
 
 import "./Todo.css";
 

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useContext } from "react";
-import { auth } from "../context/context";
+import { auth } from "../../../context/context.jsx";
 import "./Signup.css";
 
 function Signup() {

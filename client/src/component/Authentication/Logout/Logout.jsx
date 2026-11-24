@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import {auth} from "../context/context";
+import {auth} from "../../../context/context.jsx";
 import { useNavigate } from "react-router";
 
 function Logout() {

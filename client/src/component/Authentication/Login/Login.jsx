@@ -3,7 +3,7 @@ import "./Login.css";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import { useContext } from "react";
-import { auth } from "../context/context";
+import { auth } from "../../../context/context.jsx";
 
 function Login() {
   const {setToken} = useContext(auth);
