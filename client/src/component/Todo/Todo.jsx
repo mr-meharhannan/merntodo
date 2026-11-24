@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
-import {useNavigate} from "react-router"; 
-import { useContext } from "react";
-import {auth} from "../../context/context.jsx";
+import {  useState } from "react";
+
 
 import Header from "../Header/Header.jsx";
 import TaskAdd from "../Task/TaskAdd/TaskAdd.jsx";
@@ -13,21 +11,10 @@ import useTasks from "../../hooks/useTasks";
 import "./Todo.css";
 
 function Todo() {
-  const {token} = useContext(auth);
+  
 
   const [newTask, setNewTask] = useState("");
   const { tasks, setTasks, loading, error } = useTasks();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!token) {
-      navigate("/login");
-    }
-  }, [token, navigate]);
-
-  if (!token) {
-    return null;
-  }
 
   
 

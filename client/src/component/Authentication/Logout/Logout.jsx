@@ -1,20 +1,10 @@
-import {useContext} from "react";
-import {auth} from "../../../context/context.jsx";
-import { useNavigate } from "react-router";
+import { useAuthService } from "../../../services/authService.js";
 
 function Logout() {
-  const { setToken } = useContext(auth);
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setToken(null);
-    navigate("/login");
-  };
-
+  const { Logout } = useAuthService();
   return (
     <div>
-      <button onClick={handleLogout}>Logout</button>
+      <button onClick={() => Logout()}>Logout</button>
     </div>
   );
 }

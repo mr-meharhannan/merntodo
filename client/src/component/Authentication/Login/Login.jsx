@@ -1,35 +1,19 @@
-import axios from "axios";
+
 import "./Login.css";
-import { useNavigate } from "react-router";
 import { useState } from "react";
-import { useContext } from "react";
-import { auth } from "../../../context/context.jsx";
+import {useAuthService} from "../../../services/authService.js";
+import { useNavigate } from "react-router";
+
 
 function Login() {
-  const {setToken} = useContext(auth);
+
+  const { Login } = useAuthService();
   const navigate = useNavigate();
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async () => {
-    try {
-      const response = await axios.post("http://localhost:5000/auth/login", {
-        email,
-        password,
-      });
-      localStorage.setItem("token", response.data.token);
-      if (setToken) {
-        setToken(response.data.token);
-      }
-      navigate("/");
-      alert("Login Successful");
-    } catch (err) {
-      console.log(err.response?.data);
-      console.log(err);
-      alert("Login Failed");
-    }
-  };
-
+  
   return (
     <div className="login-container">
       <>
@@ -46,7 +30,7 @@ function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={handleLogin}>Login</button>
+        <button onClick={() => Login(email, password)}>Login</button>
         <p>
           Don't have an account?{" "}
           <button onClick={() => navigate("/signup")}>Sign up</button>
